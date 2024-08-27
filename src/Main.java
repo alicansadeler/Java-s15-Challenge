@@ -4,14 +4,9 @@ import org.workintech.library.Library;
 import org.workintech.library.enums.Discount;
 import org.workintech.library.enums.TypeOfBook;
 import org.workintech.library.enums.Used;
-import org.workintech.library.member.MemberNormal;
 import org.workintech.library.member.MemberOfficer;
 import org.workintech.library.member.MemberRecord;
 import org.workintech.library.member.MemberStudent;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,7 +27,7 @@ public class Main {
 
 
 // kitaplar
-        library1.addBook(
+        library1.bookManagement.addBook(
                 new Book(1, "Tutunamayanlar", "Oğuz Atay", 45.99, Used.IN_USE, TypeOfBook.NOVELS),
                 new Book(2, "İnce Memed", "Yaşar Kemal", 35.50, Used.NOT_USED, TypeOfBook.NOVELS),
                 new Book(4, "Çalıkuşu", "Reşat Nuri Güntekin", 30.75, Used.NOT_USED, TypeOfBook.NOVELS),
@@ -61,18 +56,17 @@ public class Main {
 
         );
 
-          System.out.println(library1.getAllBooks().size());
-          System.out.println((library1.getBookGenre(TypeOfBook.KID_BOOKS)));
-
-          System.out.println(library1.getBook(2));
-          System.out.println(library1.getBook("tutunamayanlar"));
-          System.out.println(library1.getBook("şiirler"));
-
+          System.out.println(library1.bookManagement.getAllBooks().size());
+          System.out.println((library1.bookManagement.getBookGenre(TypeOfBook.KID_BOOKS)));
+          System.out.println(library1.bookManagement.getBook(2));
+          System.out.println(library1.bookManagement.getBook("tutunamayanlar"));
+          System.out.println(library1.bookManagement.getBook("şiirler"));
 
 
-        library1.addMember(student1);
-        library1.addMember(officer1);
 
+        library1.memberManagement.addMember(student1);
+        library1.memberManagement.addMember(officer1);
+        System.out.println(library1.memberManagement.getMemberMap());
 
         System.out.println("******************");
 
@@ -80,35 +74,7 @@ public class Main {
       library1.addBookToMember(officer1, 2);
       library1.returnToBook(student1, 2);
 
- //       console(library1);
-    }
-
-    public static void console(Library library) {
-        String userName;
-        String password;
-        String number;
-        Scanner myObj = new Scanner(System.in);
-        System.out.println("Enter username");
-        userName = myObj.nextLine();
-        System.out.println("Enter password");
-        password = myObj.nextLine();
-
-        Map<Long, Librarian> librarians = library.getLibrarians();
-        for (Librarian librarian : librarians.values()) {
-            if (librarian.getLibrarianFullName().equals(userName) && librarian.getLibrarianPassword().equals(password)) {
-                System.out.println("Giriş başarılı. Görevli: " + librarian.getLibrarianFullName());
-            } else {
-                System.out.println("Giriş başarısız konsol kapatılıyor.");
-                myObj.close();
-            }
-        }
-        Scanner console = new Scanner(System.in);
-        number = console.nextLine();
-
-
-        System.out.println("Yapmak istediğiniz işlemi seçiniz: " + "\n" + "(1) Kitap Bul");
-
-
 
     }
+
 }

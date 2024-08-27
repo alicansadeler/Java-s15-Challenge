@@ -1,20 +1,9 @@
 package org.workintech.library;
-
-
-
 import org.workintech.library.enums.TypeOfBook;
 import org.workintech.library.enums.Used;
-import org.workintech.library.interfaces.IBook;
-
 import java.util.Objects;
 
-
-
 public  class Book {
-
-    // kitapların genel özellikleri için validasyonlar eklenecek
-    // kitabın türüne göre belirlenenen id değerinin başına typeCode eklenecek
-    // typecode değerine göre kitapları türüne göre çağır
 
     private long bookId;
     private String bookName;
